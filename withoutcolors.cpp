@@ -38,15 +38,15 @@ public:
   void
   display ()
   {
-    cout << "\n╔==================================================╗\n";
-    cout << "║               Product Details                    ║\n";
-    cout << "║ ID:       " << setw (39) << id << "║\n";
-    cout << "║ Name:     " << setw (39) << name << "║\n";
-    cout << "║ Category: " << setw (39) << category << "║\n";
-    cout << "║ Quantity: " << setw (39) << quantity << "║\n";
-    cout << "║ Price:    " << setw (39) << fixed << setprecision (2) << price
-         << "║\n";
-    cout << "╚==================================================╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "                Product Details                     \n";
+    cout << "  ID:       " << setw (39) << id << " \n";
+    cout << "  Name:     " << setw (39) << name << " \n";
+    cout << "  Category: " << setw (39) << category << " \n";
+    cout << "  Quantity: " << setw (39) << quantity << " \n";
+    cout << "  Price:    " << setw (39) << fixed << setprecision (2) << price
+         << " \n";
+    cout << "====================================================\n\n";
   }
 };
 
@@ -65,12 +65,12 @@ public:
   void
   display ()
   {
-    cout << "\n╔==================================================╗\n";
-    cout << "║               Category Details                   ║\n";
-    cout << "║ Name: " << setw (43) << name << "║\n";
-    cout << "║ Description:    " << setw (33) << fixed << setprecision (2)
-         << description << "║\n";
-    cout << "╚==================================================╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "                Category Details                    \n";
+    cout << "  Name: " << setw (43) << name << " \n";
+    cout << "  Description:    " << setw (33) << fixed << setprecision (2)
+         << description << " \n";
+    cout << "====================================================\n\n";
   }
 };
 
@@ -89,12 +89,12 @@ public:
   void
   display ()
   {
-    cout << "\n╔==================================================╗\n";
-    cout << "║               Supplier Details                   ║\n";
-    cout << "║ Name: " << setw (43) << name << "║\n";
-    cout << "║ Contact Info:   " << setw (33) << fixed << setprecision (2)
-         << contactInfo << "║\n";
-    cout << "╚==================================================╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "                Supplier Details                    \n";
+    cout << "  Name: " << setw (43) << name << " \n";
+    cout << "  Contact Info:   " << setw (33) << fixed << setprecision (2)
+         << contactInfo << " \n";
+    cout << "====================================================\n\n";
   }
 };
 class Invoice
@@ -119,24 +119,24 @@ public:
   {
     clearTerminal ();
 
-    cout << "\n╔==================================================╗\n";
-    cout << "║                     Invoice                      ║\n";
+    cout << "\n====================================================\n";
+    cout << "                      Invoice                       \n";
     cout << "╠==================================================╣\n";
-    cout << "║ ID       Name            Quantity          Price ║\n";
+    cout << "  ID       Name            Quantity          Price  \n";
     cout << "╠==================================================╣\n";
 
     for (size_t i = 0; i < products.size (); ++i)
       {
-        cout << "║ " << setw (1) << products[i].id << "  " << setw (10)
+        cout << "  " << setw (1) << products[i].id << "  " << setw (10)
              << products[i].name << "  " << setw (12) << quantities[i] << "  "
              << setw (19) << fixed << setprecision (2) << products[i].price
-             << " ║\n";
+             << "  \n";
       }
 
     cout << "╠==================================================╣\n";
-    cout << "║ Total: " << setw (41) << fixed << setprecision (2) << total
-         << " ║\n";
-    cout << "╚==================================================╝\n\n";
+    cout << "  Total: " << setw (41) << fixed << setprecision (2) << total
+         << "  \n";
+    cout << "====================================================\n\n";
   }
 };
 
@@ -178,9 +178,9 @@ public:
     products.push_back (product);
     clearTerminal ();
 
-    cout << "\n╔==================================================╗\n";
-    cout << "║            Product Added Successfully            ║\n";
-    cout << "╚==================================================╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "             Product Added Successfully             \n";
+    cout << "====================================================\n\n";
   }
   void
   updateProduct (int id, Product &updatedProduct)
@@ -192,9 +192,9 @@ public:
           {
             products[i] = updatedProduct;
             clearTerminal ();
-            cout << "\n╔==================================================╗\n";
-            cout << "║           Product Updated Successfully           ║\n";
-            cout << "╚==================================================╝\n\n";
+            cout << "\n====================================================\n";
+            cout << "            Product Updated Successfully            \n";
+            cout << "====================================================\n\n";
             found = true;
             break;
           }
@@ -203,9 +203,9 @@ public:
       {
         clearTerminal ();
 
-        cout << "\n╔==================================================╗\n";
-        cout << "║               Product Not Found!!                ║\n";
-        cout << "╚==================================================╝\n\n";
+        cout << "\n====================================================\n";
+        cout << "                Product Not Found!!                 \n";
+        cout << "====================================================\n\n";
       }
   }
   void
@@ -225,9 +225,9 @@ public:
     if (found == false)
       {
         clearTerminal ();
-        cout << "\n╔==================================================╗\n";
-        cout << "║               Product Not Found!!                ║\n";
-        cout << "╚==================================================╝\n\n";
+        cout << "\n====================================================\n";
+        cout << "                Product Not Found!!                 \n";
+        cout << "====================================================\n\n";
       }
   }
   void
@@ -240,17 +240,17 @@ public:
             products.erase (products.begin () + i);
             clearTerminal ();
 
-            cout << "\n╔==================================================╗\n";
-            cout << "║             Product Removed Successfully         ║\n";
-            cout << "╚==================================================╝\n\n";
+            cout << "\n====================================================\n";
+            cout << "              Product Removed Successfully          \n";
+            cout << "====================================================\n\n";
             return;
           }
       }
     clearTerminal ();
 
-    cout << "\n╔==================================================╗\n";
-    cout << "║               Product Not Found!!                ║\n";
-    cout << "╚==================================================╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "                Product Not Found!!                 \n";
+    cout << "====================================================\n\n";
   }
   void
   buyProduct (string name, int quantity)
@@ -271,19 +271,19 @@ public:
             else
               {
                 clearTerminal ();
-                cout << "\n╔=================================================="
-                        "╗\n";
-                cout << "║        Insufficient quantity available.          "
-                        "║\n";
-                cout << "╚=================================================="
-                        "╝\n\n";
+                cout << "\n==================================================="
+                        "=\n";
+                cout << "         Insufficient quantity available.          "
+                        " \n";
+                cout << "==================================================="
+                        "=\n\n";
                 return;
               }
           }
       }
-    cout << "\n╔==================================================╗\n";
-    cout << "║               Product Not Found!!                ║\n";
-    cout << "╚==================================================╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "                Product Not Found!!                 \n";
+    cout << "====================================================\n\n";
   }
 
   void
@@ -302,9 +302,9 @@ public:
     categories.push_back (category);
     clearTerminal ();
 
-    cout << "\n╔==================================================╗\n";
-    cout << "║           Category Added Successfully            ║\n";
-    cout << "╚==================================================╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "            Category Added Successfully             \n";
+    cout << "====================================================\n\n";
   }
 
   void
@@ -318,9 +318,9 @@ public:
             categories[i] = updatedCategory;
             clearTerminal ();
 
-            cout << "\n╔==================================================╗\n";
-            cout << "║          Category Updated Successfully           ║\n";
-            cout << "╚==================================================╝\n\n";
+            cout << "\n====================================================\n";
+            cout << "           Category Updated Successfully            \n";
+            cout << "====================================================\n\n";
             found = true;
             break;
           }
@@ -329,9 +329,9 @@ public:
       {
         clearTerminal ();
 
-        cout << "\n╔==================================================╗\n";
-        cout << "║              Category Not Found!!                ║\n";
-        cout << "╚==================================================╝\n\n";
+        cout << "\n====================================================\n";
+        cout << "               Category Not Found!!                 \n";
+        cout << "====================================================\n\n";
       }
   }
 
@@ -353,9 +353,9 @@ public:
       {
         clearTerminal ();
 
-        cout << "\n╔==================================================╗\n";
-        cout << "║              Category Not Found!!                ║\n";
-        cout << "╚==================================================╝\n\n";
+        cout << "\n====================================================\n";
+        cout << "               Category Not Found!!                 \n";
+        cout << "====================================================\n\n";
       }
   }
   void
@@ -368,9 +368,9 @@ public:
             categories.erase (categories.begin () + i);
             clearTerminal ();
 
-            cout << "\n╔==================================================╗\n";
-            cout << "║            Category Removed Successfully         ║\n";
-            cout << "╚==================================================╝\n\n";
+            cout << "\n====================================================\n";
+            cout << "             Category Removed Successfully          \n";
+            cout << "====================================================\n\n";
             return;
           }
       }
@@ -402,9 +402,9 @@ public:
       {
         clearTerminal ();
 
-        cout << "\n╔==================================================╗\n";
-        cout << "║        No products found in this category        ║\n";
-        cout << "╚==================================================╝\n\n";
+        cout << "\n====================================================\n";
+        cout << "         No products found in this category         \n";
+        cout << "====================================================\n\n";
       }
   }
 
@@ -414,9 +414,9 @@ public:
     suppliers.push_back (supplier);
     clearTerminal ();
 
-    cout << "\n╔==================================================╗\n";
-    cout << "║           Supplier Added Successfully            ║\n";
-    cout << "╚==================================================╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "            Supplier Added Successfully             \n";
+    cout << "====================================================\n\n";
   }
 
   void
@@ -430,9 +430,9 @@ public:
             suppliers[i] = updatedSupplier;
             clearTerminal ();
 
-            cout << "\n╔==================================================╗\n";
-            cout << "║          Supplier Updated Successfully           ║\n";
-            cout << "╚==================================================╝\n\n";
+            cout << "\n====================================================\n";
+            cout << "           Supplier Updated Successfully            \n";
+            cout << "====================================================\n\n";
             found = true;
             break;
           }
@@ -441,9 +441,9 @@ public:
       {
         clearTerminal ();
 
-        cout << "\n╔==================================================╗\n";
-        cout << "║              Supplier Not Found!!                ║\n";
-        cout << "╚==================================================╝\n\n";
+        cout << "\n====================================================\n";
+        cout << "               Supplier Not Found!!                 \n";
+        cout << "====================================================\n\n";
       }
   }
 
@@ -465,9 +465,9 @@ public:
       {
         clearTerminal ();
 
-        cout << "\n╔==================================================╗\n";
-        cout << "║              Supplier Not Found!!                ║\n";
-        cout << "╚==================================================╝\n\n";
+        cout << "\n====================================================\n";
+        cout << "               Supplier Not Found!!                 \n";
+        cout << "====================================================\n\n";
       }
   }
   void
@@ -479,9 +479,9 @@ public:
           {
             suppliers.erase (suppliers.begin () + i);
             clearTerminal ();
-            cout << "\n╔==================================================╗\n";
-            cout << "║            Supplier Removed Successfully         ║\n";
-            cout << "╚==================================================╝\n\n";
+            cout << "\n====================================================\n";
+            cout << "             Supplier Removed Successfully          \n";
+            cout << "====================================================\n\n";
             return;
           }
       }
@@ -508,36 +508,36 @@ main ()
   do
     {
 
-      cout << "╔==================================================╗\n";
-      cout << "║                                                  ║\n";
-      cout << "║            Inventory Management System           ║\n";
-      cout << "║                                                  ║\n";
-      cout << "╠==================================================╣\n";
-      cout << "║  --Product Options--                             ║\n";
-      cout << "║  1. Add Product                                  ║\n";
-      cout << "║  2. Update Product                               ║\n";
-      cout << "║  3. Query Product                                ║\n";
-      cout << "║  4. Remove Product                               ║\n";
-      cout << "║  5. Display All Product                          ║\n";
-      cout << "║  6. Buy Product                                  ║\n";
-      cout << "║  7. Display Products by Category                 ║\n";
-      cout << "╠==================================================╣\n";
-      cout << "║  --Category Options--                            ║\n";
-      cout << "║  8. Add Category                                 ║\n";
-      cout << "║  9. Update Category                              ║\n";
-      cout << "║  10. Query Category                              ║\n";
-      cout << "║  11. Display All Category                        ║\n";
-      cout << "║  12. Remove Category                             ║\n";
-      cout << "╠==================================================╣\n";
-      cout << "║  --Supplier Options--                            ║\n";
-      cout << "║  13. Add Supplier                                ║\n";
-      cout << "║  14. Update Supplier                             ║\n";
-      cout << "║  15. Query Supplier                              ║\n";
-      cout << "║  16. Display All Supplier                        ║\n";
-      cout << "║  17. Remove Supplier                             ║\n";
-      cout << "╠==================================================╣\n";
-      cout << "║  0. Exit                                         ║\n";
-      cout << "╚==================================================╝\n";
+      cout << "====================================================\n";
+      cout << "                                                    \n";
+      cout << "             Inventory Management System            \n";
+      cout << "                                                    \n";
+      cout << "====================================================\n";
+      cout << "   --Product Options--                              \n";
+      cout << "   1. Add Product                                   \n";
+      cout << "   2. Update Product                                \n";
+      cout << "   3. Query Product                                 \n";
+      cout << "   4. Remove Product                                \n";
+      cout << "   5. Display All Product                           \n";
+      cout << "   6. Buy Product                                   \n";
+      cout << "   7. Display Products by Category                  \n";
+      cout << "====================================================\n";
+      cout << "   --Category Options--                             \n";
+      cout << "   8. Add Category                                  \n";
+      cout << "   9. Update Category                               \n";
+      cout << "   10. Query Category                               \n";
+      cout << "   11. Display All Category                         \n";
+      cout << "   12. Remove Category                              \n";
+      cout << "====================================================\n";
+      cout << "   --Supplier Options--                             \n";
+      cout << "   13. Add Supplier                                 \n";
+      cout << "   14. Update Supplier                              \n";
+      cout << "   15. Query Supplier                               \n";
+      cout << "   16. Display All Supplier                         \n";
+      cout << "   17. Remove Supplier                              \n";
+      cout << "====================================================\n";
+      cout << "   0. Exit                                          \n";
+      cout << "====================================================\n";
       cout << "Enter your choice: ";
       cin >> choice;
 

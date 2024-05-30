@@ -1,7 +1,3 @@
-// Inventory Management System: Build a system to track and manage inventory
-// for a store or warehouse. Define classes such as Product, Category, and
-// Supplier with methods for adding, updating, and querying inventory items.
-
 #include <bits/stdc++.h>
 #include <iostream>
 #include <string>
@@ -16,14 +12,6 @@ clearTerminal ()
   system ("clear");
 #endif
 }
-const string RESET = "\033[0m";
-const string BOLD = "\033[1m";
-const string UNDERLINE = "\033[4m";
-const string RED = "\033[31m";
-const string GREEN = "\033[32m";
-const string YELLOW = "\033[33m";
-const string BLUE = "\033[34m";
-const string CYAN = "\033[36m";
 
 class Product
 {
@@ -33,6 +21,8 @@ public:
   int quantity;
   double price;
   string category;
+
+public:
   Product (string name, int id, int quantity, double price, string category)
   {
     this->name = name;
@@ -41,19 +31,19 @@ public:
     this->price = price;
     this->category = category;
   }
+
   void
   display ()
   {
-    cout << BLUE << BOLD;
-    cout << "\n╔══════════════════════════════════════════════════╗\n";
-    cout << "║               Product Details                    ║\n";
-    cout << "║ ID:       " << setw (39) << id << "║\n";
-    cout << "║ Name:     " << setw (39) << name << "║\n";
-    cout << "║ Category: " << setw (39) << category << "║\n";
-    cout << "║ Quantity: " << setw (39) << quantity << "║\n";
-    cout << "║ Price:    " << setw (39) << fixed << setprecision (2) << price
-         << "║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "|               Product Details                    | \n";
+    cout << "| ID:       " << setw (38) << id << " |\n";
+    cout << "| Name:     " << setw (38) << name << " |\n";
+    cout << "| Category: " << setw (38) << category << " |\n";
+    cout << "| Quantity: " << setw (38) << quantity << " |\n";
+    cout << "| Price:    " << setw (38) << fixed << setprecision (2) << price
+         << " |\n";
+    cout << "====================================================\n\n";
   }
 };
 
@@ -63,6 +53,7 @@ public:
   string name;
   string description;
 
+public:
   Category (string name, string description)
   {
     this->name = name;
@@ -72,15 +63,15 @@ public:
   void
   display ()
   {
-    cout << BLUE << BOLD;
-    cout << "\n╔══════════════════════════════════════════════════╗\n";
-    cout << "║               Category Details                   ║\n";
-    cout << "║ Name: " << setw (43) << name << "║\n";
-    cout << "║ Description:    " << setw (33) << fixed << setprecision (2)
-         << description << "║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "|               Category Details                   |\n";
+    cout << "| Name: " << setw (42) << name << " |\n";
+    cout << "| Description:    " << setw (32) << fixed << setprecision (2)
+         << description << " |\n";
+    cout << "====================================================\n\n";
   }
 };
+
 class Supplier
 {
 public:
@@ -92,33 +83,33 @@ public:
     this->name = name;
     this->contactInfo = contactInfo;
   }
+
   void
   display ()
   {
-    cout << "Name: " << name << endl;
-    cout << "Contact Info: " << contactInfo << endl;
-
-    cout << BLUE << BOLD;
-    cout << "\n╔══════════════════════════════════════════════════╗\n";
-    cout << "║               Supplier Details                   ║\n";
-    cout << "║ Name: " << setw (43) << name << "║\n";
-    cout << "║ Contact Info:   " << setw (33) << fixed << setprecision (2)
-         << contactInfo << "║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "|               Supplier Details                   |\n";
+    cout << "| Name: " << setw (42) << name << " |\n";
+    cout << "| Contact Info:   " << setw (32) << fixed << setprecision (2)
+         << contactInfo << " |\n";
+    cout << "====================================================\n\n";
   }
 };
 class Invoice
 {
 public:
-  vector<pair<Product, int> > items;
+  vector<Product> products;
+  vector<int> quantities;
   double total;
 
-  Invoice () : total (0) {}
+public:
+  Invoice () { total = 0; }
 
   void
   addItem (Product &product, int quantity)
   {
-    items.push_back (make_pair (product, quantity));
+    products.push_back (product);
+    quantities.push_back (quantity);
     total += product.price * quantity;
   }
 
@@ -126,25 +117,25 @@ public:
   display ()
   {
     clearTerminal ();
-    cout << BLUE << BOLD;
-    cout << "\n╔══════════════════════════════════════════════════╗\n";
-    cout << "║                     Invoice                      ║\n";
-    cout << "╠══════════════════════════════════════════════════╣\n";
-    cout << "║ ID       Name            Quantity          Price ║\n";
-    cout << "╠══════════════════════════════════════════════════╣\n";
 
-    for (auto &item : items)
+    cout << "\n====================================================\n";
+    cout << "|                     Invoice                      |\n";
+    cout << "====================================================\n";
+    cout << "| ID       Name            Quantity          Price |\n";
+    cout << "====================================================\n";
+
+    for (size_t i = 0; i < products.size (); ++i)
       {
-        cout << "║ " << setw (1) << item.first.id << "  " << setw (10)
-             << item.first.name << "  " << setw (12) << item.second << "  "
-             << setw (19) << fixed << setprecision (2) << item.first.price
-             << " ║\n";
+        cout << "| " << setw (1) << products[i].id << "  " << setw (10)
+             << products[i].name << "  " << setw (12) << quantities[i] << "  "
+             << setw (19) << fixed << setprecision (2) << products[i].price
+             << " |\n";
       }
 
-    cout << "╠══════════════════════════════════════════════════╣\n";
-    cout << "║ Total: " << setw (41) << fixed << setprecision (2) << total
-         << " ║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+    cout << "====================================================\n";
+    cout << "| Total: " << setw (41) << fixed << setprecision (2) << total
+         << " |\n";
+    cout << "====================================================\n\n";
   }
 };
 
@@ -158,10 +149,10 @@ public:
   void
   addSampleProducts ()
   {
-    products.push_back (Product ("Bags", 01, 10, 19.99, "Children"));
-    products.push_back (Product ("Toys", 01, 10, 19.99, "Children"));
-    products.push_back (Product ("Laptop", 02, 15, 29.99, "Electronics"));
-    products.push_back (Product ("Charger", 02, 15, 29.99, "Electronics"));
+    products.push_back (Product ("Bags", 1, 10, 19.99, "Children"));
+    products.push_back (Product ("Toys", 2, 10, 19.99, "Children"));
+    products.push_back (Product ("Laptop", 3, 15, 29.99, "Electronics"));
+    products.push_back (Product ("Charger", 4, 15, 29.99, "Electronics"));
   }
 
   void
@@ -170,7 +161,7 @@ public:
     categories.push_back (
         Category ("Children", "This Category is for Children"));
     categories.push_back (
-        Category ("Laptop", "This Category is for Electronics"));
+        Category ("Electronics", "This Category is for Electronics"));
   }
 
   void
@@ -185,10 +176,10 @@ public:
   {
     products.push_back (product);
     clearTerminal ();
-    cout << BLUE << BOLD;
-    cout << "\n╔══════════════════════════════════════════════════╗\n";
-    cout << "║            Product Added Successfully            ║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+    cout << "\n====================================================\n";
+    cout << "|            Product Added Successfully            |\n";
+    cout << "====================================================\n\n";
   }
   void
   updateProduct (int id, Product &updatedProduct)
@@ -200,10 +191,9 @@ public:
           {
             products[i] = updatedProduct;
             clearTerminal ();
-            cout << BLUE << BOLD;
-            cout << "\n╔══════════════════════════════════════════════════╗\n";
-            cout << "║           Product Updated Successfully           ║\n";
-            cout << "╚══════════════════════════════════════════════════╝\n\n";
+            cout << "\n====================================================\n";
+            cout << "|           Product Updated Successfully           |\n";
+            cout << "====================================================\n\n";
             found = true;
             break;
           }
@@ -211,10 +201,10 @@ public:
     if (found == false)
       {
         clearTerminal ();
-        cout << BLUE << BOLD;
-        cout << "\n╔══════════════════════════════════════════════════╗\n";
-        cout << "║               Product Not Found!!                ║\n";
-        cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+        cout << "\n====================================================\n";
+        cout << "|               Product Not Found!!                |\n";
+        cout << "====================================================\n\n";
       }
   }
   void
@@ -234,10 +224,9 @@ public:
     if (found == false)
       {
         clearTerminal ();
-        cout << BLUE << BOLD;
-        cout << "\n╔══════════════════════════════════════════════════╗\n";
-        cout << "║               Product Not Found!!                ║\n";
-        cout << "╚══════════════════════════════════════════════════╝\n\n";
+        cout << "\n====================================================\n";
+        cout << "|               Product Not Found!!                |\n";
+        cout << "====================================================\n\n";
       }
   }
   void
@@ -249,18 +238,18 @@ public:
           {
             products.erase (products.begin () + i);
             clearTerminal ();
-            cout << BLUE << BOLD;
-            cout << "\n╔══════════════════════════════════════════════════╗\n";
-            cout << "║             Product Removed Successfully         ║\n";
-            cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+            cout << "\n====================================================\n";
+            cout << "|             Product Removed Successfully         |\n";
+            cout << "====================================================\n\n";
             return;
           }
       }
     clearTerminal ();
-    cout << BLUE << BOLD;
-    cout << "\n╔══════════════════════════════════════════════════╗\n";
-    cout << "║               Product Not Found!!                ║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+    cout << "\n====================================================\n";
+    cout << "|               Product Not Found!!                |\n";
+    cout << "====================================================\n\n";
   }
   void
   buyProduct (string name, int quantity)
@@ -281,21 +270,19 @@ public:
             else
               {
                 clearTerminal ();
-                cout << BLUE << BOLD;
-                cout << "\n╔══════════════════════════════════════════════════"
-                        "╗\n";
-                cout << "║        Insufficient quantity available.          "
-                        "║\n";
-                cout << "╚══════════════════════════════════════════════════╝"
-                        "\n\n";
+                cout << "\n==================================================="
+                        "=\n";
+                cout << "|        Insufficient quantity available.          "
+                        "|\n";
+                cout << "==================================================="
+                        "=\n\n";
                 return;
               }
           }
       }
-    cout << BLUE << BOLD;
-    cout << "\n╔══════════════════════════════════════════════════╗\n";
-    cout << "║               Product Not Found!!                ║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+    cout << "\n====================================================\n";
+    cout << "|               Product Not Found!!                |\n";
+    cout << "====================================================\n\n";
   }
 
   void
@@ -313,10 +300,10 @@ public:
   {
     categories.push_back (category);
     clearTerminal ();
-    cout << BLUE << BOLD;
-    cout << "\n╔══════════════════════════════════════════════════╗\n";
-    cout << "║           Category Added Successfully            ║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+    cout << "\n====================================================\n";
+    cout << "|           Category Added Successfully            |\n";
+    cout << "====================================================\n\n";
   }
 
   void
@@ -329,10 +316,10 @@ public:
           {
             categories[i] = updatedCategory;
             clearTerminal ();
-            cout << BLUE << BOLD;
-            cout << "\n╔══════════════════════════════════════════════════╗\n";
-            cout << "║          Category Updated Successfully           ║\n";
-            cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+            cout << "\n====================================================\n";
+            cout << "|          Category Updated Successfully           |\n";
+            cout << "====================================================\n\n";
             found = true;
             break;
           }
@@ -340,10 +327,10 @@ public:
     if (found == false)
       {
         clearTerminal ();
-        cout << BLUE << BOLD;
-        cout << "\n╔══════════════════════════════════════════════════╗\n";
-        cout << "║              Category Not Found!!                ║\n";
-        cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+        cout << "\n====================================================\n";
+        cout << "|              Category Not Found!!                |\n";
+        cout << "====================================================\n\n";
       }
   }
 
@@ -364,10 +351,10 @@ public:
     if (!found)
       {
         clearTerminal ();
-        cout << BLUE << BOLD;
-        cout << "\n╔══════════════════════════════════════════════════╗\n";
-        cout << "║              Category Not Found!!                ║\n";
-        cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+        cout << "\n====================================================\n";
+        cout << "|              Category Not Found!!                |\n";
+        cout << "====================================================\n\n";
       }
   }
   void
@@ -375,14 +362,14 @@ public:
   {
     for (int i = 0; i < categories.size (); ++i)
       {
-        if (products[i].name == name)
+        if (categories[i].name == name)
           {
-            products.erase (products.begin () + i);
+            categories.erase (categories.begin () + i);
             clearTerminal ();
-            cout << BLUE << BOLD;
-            cout << "\n╔══════════════════════════════════════════════════╗\n";
-            cout << "║            Category Removed Successfully         ║\n";
-            cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+            cout << "\n====================================================\n";
+            cout << "|            Category Removed Successfully         |\n";
+            cout << "====================================================\n\n";
             return;
           }
       }
@@ -413,10 +400,10 @@ public:
     if (!found)
       {
         clearTerminal ();
-        cout << BLUE << BOLD;
-        cout << "\n╔══════════════════════════════════════════════════╗\n";
-        cout << "║        No products found in this category        ║\n";
-        cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+        cout << "\n====================================================\n";
+        cout << "|        No products found in this category        |\n";
+        cout << "====================================================\n\n";
       }
   }
 
@@ -425,10 +412,10 @@ public:
   {
     suppliers.push_back (supplier);
     clearTerminal ();
-    cout << BLUE << BOLD;
-    cout << "\n╔══════════════════════════════════════════════════╗\n";
-    cout << "║           Supplier Added Successfully            ║\n";
-    cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+    cout << "\n====================================================\n";
+    cout << "|           Supplier Added Successfully            |\n";
+    cout << "====================================================\n\n";
   }
 
   void
@@ -441,12 +428,10 @@ public:
           {
             suppliers[i] = updatedSupplier;
             clearTerminal ();
-            cout << BLUE << BOLD;
-            cout << "\n╔══════════════════════════════════════════════════╗"
-                    "\n";
-            cout << "║          Supplier Updated Successfully           ║\n";
-            cout << "╚══════════════════════════════════════════════════╝\n"
-                    "\n";
+
+            cout << "\n====================================================\n";
+            cout << "|          Supplier Updated Successfully           |\n";
+            cout << "====================================================\n\n";
             found = true;
             break;
           }
@@ -454,10 +439,10 @@ public:
     if (!found)
       {
         clearTerminal ();
-        cout << BLUE << BOLD;
-        cout << "\n╔══════════════════════════════════════════════════╗\n";
-        cout << "║              Supplier Not Found!!                ║\n";
-        cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+        cout << "\n====================================================\n";
+        cout << "|              Supplier Not Found!!                |\n";
+        cout << "====================================================\n\n";
       }
   }
 
@@ -478,10 +463,10 @@ public:
     if (!found)
       {
         clearTerminal ();
-        cout << BLUE << BOLD;
-        cout << "\n╔══════════════════════════════════════════════════╗\n";
-        cout << "║              Supplier Not Found!!                ║\n";
-        cout << "╚══════════════════════════════════════════════════╝\n\n";
+
+        cout << "\n====================================================\n";
+        cout << "|              Supplier Not Found!!                |\n";
+        cout << "====================================================\n\n";
       }
   }
   void
@@ -489,14 +474,13 @@ public:
   {
     for (int i = 0; i < suppliers.size (); ++i)
       {
-        if (products[i].name == name)
+        if (suppliers[i].name == name)
           {
-            products.erase (products.begin () + i);
+            suppliers.erase (suppliers.begin () + i);
             clearTerminal ();
-            cout << BLUE << BOLD;
-            cout << "\n╔══════════════════════════════════════════════════╗\n";
-            cout << "║            Supplier Removed Successfully         ║\n";
-            cout << "╚══════════════════════════════════════════════════╝\n\n";
+            cout << "\n====================================================\n";
+            cout << "|            Supplier Removed Successfully         |\n";
+            cout << "====================================================\n\n";
             return;
           }
       }
@@ -523,61 +507,37 @@ main ()
   do
     {
 
-      cout << BLUE << BOLD;
-      cout << "╔══════════════════════════════════════════════════╗\n";
-      cout << "║                                                  ║\n";
-      cout << "║            Inventory Management System        "
-              "   ║\n";
-      cout << "║                                                  ║\n";
-      cout << "╠══════════════════════════════════════════════════╣\n";
-      cout << "║" << RESET << GREEN << "  --Product Options--" << RESET << BLUE
-           << "                             ║\n";
-      cout << "║  " << YELLOW << "1. Add Product" << RESET << BLUE
-           << "                                  ║\n";
-      cout << "║  " << YELLOW << "2. Update Product" << RESET << BLUE
-           << "                               ║\n";
-      cout << "║  " << YELLOW << "3. Query Product" << RESET << BLUE
-           << "                                ║\n";
-      cout << "║  " << YELLOW << "4. Remove Product" << RESET << BLUE
-           << "                               ║\n";
-      cout << "║  " << YELLOW << "5. Display All Product" << RESET << BLUE
-           << "                          ║\n";
-      cout << "║  " << YELLOW << "6. Buy Product" << RESET << BLUE
-           << "                                  ║\n";
-      cout << "║  " << YELLOW << "7. Display Products by Category" << RESET
-           << BLUE << "                 ║\n";
-
-      cout << "╠══════════════════════════════════════════════════╣\n";
-      cout << "║" << RESET << GREEN << "  --Category Options--" << RESET
-           << BLUE << "                            ║\n";
-      cout << "║  " << YELLOW << "8. Add Category" << RESET << BLUE
-           << "                                 ║\n";
-      cout << "║  " << YELLOW << "9. Update Category" << RESET << BLUE
-           << "                              ║\n";
-      cout << "║  " << YELLOW << "10. Query Category" << RESET << BLUE
-           << "                              ║\n";
-      cout << "║  " << YELLOW << "11. Display All Category" << RESET << BLUE
-           << "                        ║\n";
-      cout << "║  " << YELLOW << "12. Remove Category" << RESET << BLUE
-           << "                             ║\n";
-      cout << "╠══════════════════════════════════════════════════╣\n";
-      cout << "║" << RESET << GREEN << "  --Supplier Options--" << RESET
-           << BLUE << "                            ║\n";
-      cout << "║  " << YELLOW << "13. Add Supplier" << RESET << BLUE
-           << "                                ║\n";
-      cout << "║  " << YELLOW << "14. Update Supplier" << RESET << BLUE
-           << "                             ║\n";
-      cout << "║  " << YELLOW << "15. Query Supplier" << RESET << BLUE
-           << "                              ║\n";
-      cout << "║  " << YELLOW << "16. Display All Supplier" << RESET << BLUE
-           << "                        ║\n";
-      cout << "║  " << YELLOW << "17. Remove Supplier" << RESET << BLUE
-           << "                             ║\n";
-      cout << "╠══════════════════════════════════════════════════╣\n";
-      cout << "║  " << RED << "0. Exit" << RESET << BLUE
-           << "                                         ║\n";
-      cout << "╚══════════════════════════════════════════════════╝\n";
-      cout << CYAN << BOLD << "Enter your choice: " << RESET;
+      cout << "====================================================\n";
+      cout << "|                                                  |\n";
+      cout << "|            Inventory Management System           |\n";
+      cout << "|                                                  |\n";
+      cout << "====================================================\n";
+      cout << "|  --Product Options--                             |\n";
+      cout << "|  1. Add Product                                  |\n";
+      cout << "|  2. Update Product                               |\n";
+      cout << "|  3. Query Product                                |\n";
+      cout << "|  4. Remove Product                               |\n";
+      cout << "|  5. Display All Product                          |\n";
+      cout << "|  6. Buy Product                                  |\n";
+      cout << "|  7. Display Products by Category                 |\n";
+      cout << "====================================================\n";
+      cout << "|  --Category Options--                            |\n";
+      cout << "|  8. Add Category                                 |\n";
+      cout << "|  9. Update Category                              |\n";
+      cout << "|  10. Query Category                              |\n";
+      cout << "|  11. Display All Category                        |\n";
+      cout << "|  12. Remove Category                             |\n";
+      cout << "====================================================\n";
+      cout << "|  --Supplier Options--                            |\n";
+      cout << "|  13. Add Supplier                                |\n";
+      cout << "|  14. Update Supplier                             |\n";
+      cout << "|  15. Query Supplier                              |\n";
+      cout << "|  16. Display All Supplier                        |\n";
+      cout << "|  17. Remove Supplier                             |\n";
+      cout << "====================================================\n";
+      cout << "|  0. Exit                                         |\n";
+      cout << "====================================================\n";
+      cout << "Enter your choice: ";
       cin >> choice;
 
       switch (choice)
@@ -588,8 +548,6 @@ main ()
             int id, quantity;
             double price;
             string category;
-            cout << "Enter product name: ";
-            cin >> name;
             cout << "Enter product ID: ";
             cin >> id;
             cout << "Enter the Category name: ";
@@ -756,13 +714,12 @@ main ()
           }
 
         case 0:
-          cout << GREEN << "Exiting program. Goodbye!" << RESET << endl;
+          cout << "Exiting program. Goodbye!" << endl;
           break;
         default:
           {
             clearTerminal ();
-            cout << RED << "Invalid choice. Please try again." << RESET
-                 << endl;
+            cout << "Invalid choice. Please try again." << endl;
             break;
           }
         }

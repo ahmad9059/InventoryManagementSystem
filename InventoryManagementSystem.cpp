@@ -548,6 +548,8 @@ main ()
             int id, quantity;
             double price;
             string category;
+            cout << "Enter the product name: ";
+            cin >> name;
             cout << "Enter product ID: ";
             cin >> id;
             cout << "Enter the Category name: ";
@@ -572,6 +574,8 @@ main ()
             cin >> id;
             cout << "Enter new product name: ";
             cin >> name;
+            cout << "Enter the new category name: ";
+            cin >> category;
             cout << "Enter new product quantity: ";
             cin >> quantity;
             cout << "Enter new product price: ";

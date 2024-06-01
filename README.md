@@ -1,107 +1,113 @@
 # Inventory Management System
 
-## Project Overview
+This Inventory Management System is designed to efficiently track and manage inventory for a store or warehouse. The system includes classes for Product, Category, Supplier, and Invoice, and provides methods for adding, updating, and querying inventory items. It features a command-line interface for user interaction.
 
-This Inventory Management System is a comprehensive software application designed to track and manage inventory for a store or warehouse. The system allows users to add, update, and query information about products, categories, and suppliers. It is built using C++ and demonstrates the application of Object-Oriented Programming (OOP) principles.
+## Features
 
-## Classes and Their Responsibilities
+- **Product Management**
+  - Add new products
+  - Update existing products
+  - Query product details
+  - Remove products
+  - Display all products
+  - Buy products and generate invoices
+  - Display products by category
 
-### 1. Product Class
-**Attributes:**
-- `string name`: The name of the product.
-- `int id`: The unique identifier for the product.
-- `int quantity`: The quantity of the product available in the inventory.
-- `double price`: The price of the product.
+- **Category Management**
+  - Add new categories
+  - Update existing categories
+  - Query category details
+  - Display all categories
+  - Remove categories
 
-**Methods:**
-- `Product(string name, int id, int quantity, double price)`: Constructor to initialize product details.
-- `void display()`: Displays the product information.
+- **Supplier Management**
+  - Add new suppliers
+  - Update existing suppliers
+  - Query supplier details
+  - Display all suppliers
+  - Remove suppliers
 
-### 2. Category Class
-**Attributes:**
-- `string name`: The name of the category.
-- `string description`: A brief description of the category.
+## Class Definitions
 
-**Methods:**
-- `Category(string name, string description)`: Constructor to initialize category details.
-- `void display()`: Displays the category information.
+### Product
+Represents a product in the inventory.
 
-### 3. Supplier Class
-**Attributes:**
-- `string name`: The name of the supplier.
-- `string contactInfo`: The contact information of the supplier.
+#### Attributes:
+- `name`: Name of the product
+- `id`: Unique identifier for the product
+- `quantity`: Quantity of the product available
+- `price`: Price of the product
+- `category`: Category to which the product belongs
 
-**Methods:**
-- `Supplier(string name, string contactInfo)`: Constructor to initialize supplier details.
-- `void display()`: Displays the supplier information.
+#### Methods:
+- `display()`: Displays the details of the product
 
-### 4. Inventory Class
-**Attributes:**
-- `vector<Product> products`: A list of products in the inventory.
-- `vector<Category> categories`: A list of categories.
-- `vector<Supplier> suppliers`: A list of suppliers.
+### Category
+Represents a category of products.
 
-**Methods:**
-- `void addProduct(Product &product)`: Adds a new product to the inventory.
-- `void updateProduct(int id, Product &updatedProduct)`: Updates the details of an existing product.
-- `void queryProduct(int id)`: Queries and displays details of a product by ID.
-- `void addCategory(Category &category)`: Adds a new category.
-- `void updateCategory(string name, Category &updatedCategory)`: Updates the details of an existing category.
-- `void queryCategory(string name)`: Queries and displays details of a category by name.
-- `void addSupplier(Supplier &supplier)`: Adds a new supplier.
-- `void updateSupplier(string name, Supplier &updatedSupplier)`: Updates the details of an existing supplier.
-- `void querySupplier(string name)`: Queries and displays details of a supplier by name.
+#### Attributes:
+- `name`: Name of the category
+- `description`: Description of the category
 
-## Usage and Workflow
+#### Methods:
+- `display()`: Displays the details of the category
 
-### Adding a Product
-1. Enter the product's name, ID, quantity, and price.
-2. The product is added to the inventory, and a confirmation message is displayed.
+### Supplier
+Represents a supplier for the products.
 
-### Updating a Product
-1. Enter the product ID to be updated.
-2. Provide the new details for the product.
-3. The product information is updated, and a confirmation message is displayed.
+#### Attributes:
+- `name`: Name of the supplier
+- `contactInfo`: Contact information of the supplier
 
-### Querying a Product
-1. Enter the product ID.
-2. The system displays the product details if found, or an error message if the product does not exist.
+#### Methods:
+- `display()`: Displays the details of the supplier
 
-### Adding a Category
-1. Enter the category name and description.
-2. The category is added to the list of categories, and a confirmation message is displayed.
+### Invoice
+Represents an invoice generated when products are purchased.
 
-### Updating a Category
-1. Enter the category name to be updated.
-2. Provide the new description for the category.
-3. The category information is updated, and a confirmation message is displayed.
+#### Attributes:
+- `products`: List of purchased products
+- `quantities`: List of quantities for the purchased products
+- `total`: Total amount for the invoice
 
-### Querying a Category
-1. Enter the category name.
-2. The system displays the category details if found, or an error message if the category does not exist.
+#### Methods:
+- `addItem(Product &product, int quantity)`: Adds an item to the invoice
+- `display()`: Displays the details of the invoice
 
-### Adding a Supplier
-1. Enter the supplier's name and contact information.
-2. The supplier is added to the list of suppliers, and a confirmation message is displayed.
+### Inventory
+Manages the overall inventory, including products, categories, and suppliers.
 
-### Updating a Supplier
-1. Enter the supplier name to be updated.
-2. Provide the new contact information for the supplier.
-3. The supplier information is updated, and a confirmation message is displayed.
+#### Methods:
+- `addSampleProducts()`: Adds sample products to the inventory
+- `addSampleCategories()`: Adds sample categories to the inventory
+- `addSampleSuppliers()`: Adds sample suppliers to the inventory
+- `addProduct(Product &product)`: Adds a new product to the inventory
+- `updateProduct(int id, Product &updatedProduct)`: Updates an existing product in the inventory
+- `queryProduct(int id)`: Queries a product by its ID
+- `removeProduct(int id)`: Removes a product by its ID
+- `buyProduct(string name, int quantity)`: Buys a product and generates an invoice
+- `displayAllProducts()`: Displays all products in the inventory
+- `addCategory(Category &category)`: Adds a new category to the inventory
+- `updateCategory(string name, Category &updatedCategory)`: Updates an existing category
+- `queryCategory(string name)`: Queries a category by its name
+- `removeCategory(string name)`: Removes a category by its name
+- `displayAllCategories()`: Displays all categories in the inventory
+- `displayProductByCategory(string &category)`: Displays products by their category
+- `addSupplier(Supplier &supplier)`: Adds a new supplier to the inventory
+- `updateSupplier(string name, Supplier &updatedSupplier)`: Updates an existing supplier
+- `querySupplier(string name)`: Queries a supplier by its name
+- `removeSupplier(string name)`: Removes a supplier by its name
+- `displayAllSuppliers()`: Displays all suppliers in the inventory
 
-### Querying a Supplier
-1. Enter the supplier name.
-2. The system displays the supplier details if found, or an error message if the supplier does not exist.
+## Usage
 
-## Why Use This System?
+To run the Inventory Management System, simply compile and execute the `main` function. You will be presented with a command-line interface to interact with the system.
 
-This Inventory Management System is designed to streamline the process of managing inventory in a store or warehouse setting. Key benefits include:
+### Sample Usage Example
 
-- **Efficiency:** Quickly add, update, and query information, reducing manual workload.
-- **Organization:** Keep all inventory data organized in one place.
-- **Accuracy:** Reduce errors associated with manual tracking of products, categories, and suppliers.
-- **Scalability:** Easily extend the system to include more features or handle larger volumes of data.
-
-## Conclusion
-
-This project demonstrates the practical application of OOP principles in solving real-world problems. By encapsulating data and behaviors within well-defined classes, the system achieves modularity, reusability, and maintainability. The Inventory Management System serves as a solid foundation for further development and customization to meet specific business needs.
+ **Add a Product**
+   ```plaintext
+   Enter product ID: 1
+   Enter the Category name: Electronics
+   Enter product quantity: 10
+   Enter product price: 199.99

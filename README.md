@@ -111,3 +111,7 @@ To run the Inventory Management System, simply compile and execute the `main` fu
    Enter the Category name: Electronics
    Enter product quantity: 10
    Enter product price: 199.99
+```
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
